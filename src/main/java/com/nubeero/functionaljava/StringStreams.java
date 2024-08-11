@@ -14,6 +14,8 @@ public class StringStreams {
 
         List<String> ordColors = Arrays.asList(strArr).stream().sorted().collect(Collectors.toList());
         System.out.println(ordColors);
+
+
      }
 
     public static void main(String[] args) {
