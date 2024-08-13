@@ -1,35 +1,52 @@
 package algorithms;
 
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.Collections.*;
+import java.util.stream.IntStream;
 
 public class TestCoinChange {
 
-    public static List<Integer> coinChange(int[] coins, int amount) {
-        List<Integer> result = new ArrayList<>();
+    static List<Integer> coinChange(int[] coinSet, int coinAmount){
 
-        // Sort the coins array in descending order
-        java.util.Arrays.sort(coins);
+        //Greedy Algorithm
+        //the denomination of coins are the coinset; the coin amount is given as coinAmount
+        List<Integer> coinResult = new ArrayList<>();
+        //{1,5,10,25} //65
+        //Sort the coinSet in descending order that the maximum coin is always picked
 
-        // Iterate through the coins array from largest to smallest
-        for (int i = coins.length - 1; i >= 0; i--) {
-            while (amount >= coins[i]) {
-                amount -= coins[i];
-                result.add(coins[i]);
+        List<Integer> coinList = Arrays.stream(coinSet).boxed().toList();
+       ArrayList<Integer> collCoinList = new ArrayList(coinList);
+        Collections.reverse(collCoinList);
+
+        for(int x = 0; x < collCoinList.size(); x++){
+            while(coinAmount >= collCoinList.get(x)){
+                coinAmount -= collCoinList.get(x);
+                coinResult.add(collCoinList.get((x)));
             }
         }
 
-        // If we cannot make the exact amount, return an empty list
-        if (amount > 0) {
-            return new ArrayList<>(); // Not possible to make the exact amount
+        if(coinAmount != 0){
+            return new ArrayList<>();
         }
 
-        return result;
+
+      // List<Integer> cnSet = Arrays.asList(coinSet);
+
+        return coinResult;
     }
 
+
+  public static List<Integer> convertIntToIntegers(int[] array){
+        return IntStream.of(array).boxed().toList();
+  }
+
+  static List<Integer> toIntegerArray(int[] array){
+        return Arrays.stream(array).boxed().toList();
+  }
+
     public static void main(String[] args) {
-        int[] coins = {1, 5, 10, 25}; // Available coin denominations
+        int[] coins = {1, 5, 10, 25}; // Available coin denominations.
         int amount = 63; // The amount we need to make
 
         List<Integer> result = coinChange(coins, amount);
@@ -38,6 +55,16 @@ public class TestCoinChange {
             System.out.println("Not possible to make the exact amount with the given coins.");
         } else {
             System.out.println("Coins used to make " + amount + " cents: " + result);
+        }
+
+
+        for(Integer x:convertIntToIntegers(coins)){
+            System.out.println(x);
+        }
+
+        Iterator<Integer> iter = toIntegerArray(coins).iterator();
+        while(iter.hasNext()){
+            System.out.println(iter.next());
         }
     }
 }
