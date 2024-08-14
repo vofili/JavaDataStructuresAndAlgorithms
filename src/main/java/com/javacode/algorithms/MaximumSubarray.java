@@ -1,5 +1,9 @@
-package algorithms;
+package com.javacode.algorithms;
 
+
+/*
+provide an immplentation of the maximum subarray problem
+ */
 public class MaximumSubarray {
 
 

@@ -1,4 +1,4 @@
-package algorithms.codingexercise;
+package com.javacode.algorithms.codingexercise;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package algorithms;
+package com.javacode.algorithms;
 
 
 class Node {

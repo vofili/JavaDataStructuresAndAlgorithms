@@ -1,4 +1,4 @@
-package algorithms;
+package com.javacode.algorithms;
 import java.util.Arrays;
 import java.util.List;
 /**

@@ -2,6 +2,19 @@ package com.javacode.javalanguage;
 
 public class ControlStatements {
 
+
+    static void useOfVar(){
+        var name="valentine";
+
+        var score=100;
+
+        var i =0;
+
+        for(i=1;i<10;i++){
+            System.out.println(99-i);
+        }
+
+    }
     static void useTheCommaSeparator(){
         for(int i=1, j= i+10;i < 5;i++, j = i * 2){
             System.out.println("i= "+ i +" j: "+ j);
@@ -67,5 +80,8 @@ public class ControlStatements {
             scoreSwitch(40);
             switchColors("yellow");
             switchColors("blue");
+
+
+            useOfVar();
         }
 }
