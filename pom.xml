@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.nubeero</groupId>
-  <artifactId>CodingTutorialJava8</artifactId>
+  <artifactId>JavaDataStructuresAndAlgorithms</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>OnJava8Tutorial</name>
+  <name>JavaDataStructuresAndAlgorithms</name>
   <url>http://maven.apache.org</url>
 
   <properties>
