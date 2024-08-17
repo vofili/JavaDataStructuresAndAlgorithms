@@ -60,11 +60,12 @@ public class MatrixOperations {
         }
 
     }
-    //transpose a matrix
+
+    //
 
     //reverse the columns elements of a matrix
 
-    static void doMatrixColumnReverse(int[][] a){
+    static int[][] doMatrixColumnReverse(int[][] a){
         int rows = a.length;
         int cols = a[0].length;
 
@@ -86,15 +87,123 @@ public class MatrixOperations {
         for(int[]p:a){
             System.out.println(Arrays.toString(p));
         }
+
+        return a;
     }
 
-    public static void main(String[] args) {
-        int[][] arr={{10,3,5,1,2,8},{9,2,5,7,7,1},{11,7,8,9,1,7}};
-       // doMatrixTransverse(arr);
+    static int[][] doMatrixReverseColumn(int[][]arr){
 
-      //  searchInAMatrix(arr, 11);
-        doMatrixColumnReverse(arr);
-         //   doMatrixSort(arr);
+        int row=arr.length;
+        int col=arr[0].length;
+
+
+        for(int c = 0; c < col;c++){
+            for(int rTop = 0,rBot = row-1;rTop<rBot; rTop++,rBot--){
+                int temp = arr[rTop][c];
+                arr[rTop][c]=arr[rBot][c];
+                arr[rBot][c]=temp;
+            }
+        }
+
+        return arr;
+    }
+
+
+    //rotate a matrix counter clockwise
+
+
+    static int[][] doCounterClockWiseRotate(int[][] arr){
+        int[][]res=arr;
+        if (arr == null) {
+
+            throw new IllegalArgumentException("Input array cannot be null");
+        }else{
+            res = doMatrixTranspose(arr);
+            res=doMatrixReverseColumn(res);
+
+
+        }
+        return res;
+    }
+
+    //to rotate matrix clockwise
+    //change column to row
+    //reverse each row
+
+    static int[][] transposeColumnToRow(int[][]a){
+        int row=a.length;
+        int col = a[0].length;
+
+        for(int c = 0; c < col;c++){
+            for(int r = c; r < row; r++){
+                int temp = a[r][c];
+                a[r][c]=a[c][r];
+                a[c][r]=temp;
+
+            }
+        }
+
+        return a;
+    }
+    static int[][] doReverseMatrixByRow(int[][] a){
+            int row=a.length;
+
+            int cols=a[0].length;
+
+            for(int r=0; r < row;r++){
+                for(int cleft=0,cright=cols-1; cleft < cright; cleft++,cright--){
+                    int temp = a[r][cleft];
+                    a[r][cleft]= a[r][cright];
+
+                    a[r][cright]=temp;
+                }
+            }
+            return a;
+    }
+
+
+    //Transpose a matrix
+    static int[][] doMatrixTranspose(int[][] a){
+        int rows=a.length;
+        int cols = a[0].length;
+
+        for(int i = 0;i < rows;i++){
+            System.out.println("Old Array row "+i+":"+Arrays.toString(a[i]));
+            for(int j = i;j < cols;j++){
+                int temp = a[i][j];
+                a[i][j]=a[j][i];
+                a[j][i]=temp;
+            }
+            System.out.println("New Array row "+i+":"+Arrays.toString(a[i]));
+        }
+        return a;
+    }
+
+
+
+    public static void main(String[] args) {
+        int[][] arr={{10,3,5,1,2,8},{9,2,5,7,7,1},{11,7,8,5,4,0},
+                {1,3,5,2,4,7},{5,2,6,4,2,7},{3,2,8,9,1,7}};
+        // doMatrixTransverse(arr);
+        //  searchInAMatrix(arr, 11);
+        //  doMatrixColumnReverse(arr);
+        //   doMatrixSort(arr);
+
+        int[][]ant={{1,2,3},{6,7,8},{9,3,6}};
+
+        //Before
+        System.out.println("Before"+"\\n");
+        for(int[]p : arr){
+            System.out.println(Arrays.toString(p));
+        }
+        int[][] sample = transposeColumnToRow(arr);
+        sample = doReverseMatrixByRow(sample);
+       // int[][] sample = doMatrixTranspose(ant);
+        System.out.println("After");
+        for(int[]p:sample){
+            System.out.println(Arrays.toString(p));
+        }
+
     }
 
 
