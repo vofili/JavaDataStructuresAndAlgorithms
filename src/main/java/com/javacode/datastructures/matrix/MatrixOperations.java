@@ -1,5 +1,6 @@
 package com.javacode.datastructures.matrix;
-import java.util.Arrays;
+import java.util.*;
+
 public class MatrixOperations {
 
     //transverse a matrix
@@ -180,10 +181,42 @@ public class MatrixOperations {
     }
 
 
+        static List<Integer> findUniqueElements(int[][] arr){
+                List<Integer>result=new ArrayList<>();
+                Map<Integer,Integer> freq=new HashMap<>();
+                int rows=arr.length;
+                int cols = arr[0].length;
+                for(int i = 0; i < rows;i++){
+                    for(int j=0; j < cols;j++){
+                        if(freq.containsKey(arr[i][j])){
+                            freq.put(arr[i][j],freq.get(arr[i][j]).intValue()+1);
+                        }else{
+                            freq.put(arr[i][j],1);
+                        }
+                    }
+                }
+
+                for(Map.Entry<Integer,Integer> e: freq.entrySet()){
+                    if(e.getValue()==1)
+                    {
+                        result.add(e.getKey());
+                    }
+                }
+
+
+
+                return result;
+        }
+
+
+
+
+
+
 
     public static void main(String[] args) {
-        int[][] arr={{10,3,5,1,2,8},{9,2,5,7,7,1},{11,7,8,5,4,0},
-                {1,3,5,2,4,7},{5,2,6,4,2,7},{3,2,8,9,1,7}};
+        int[][] arr={{10,3,5,1,2,8},{9,27,5,7,7,1},{11,7,8,5,4,0},
+                {1,3,5,23,4,7},{5,2,6,4,2,7},{3,2,8,19,1,7}};
         // doMatrixTransverse(arr);
         //  searchInAMatrix(arr, 11);
         //  doMatrixColumnReverse(arr);
@@ -197,12 +230,15 @@ public class MatrixOperations {
             System.out.println(Arrays.toString(p));
         }
         int[][] sample = transposeColumnToRow(arr);
-        sample = doReverseMatrixByRow(sample);
+        //sample = doReverseMatrixByRow(sample);
        // int[][] sample = doMatrixTranspose(ant);
         System.out.println("After");
         for(int[]p:sample){
             System.out.println(Arrays.toString(p));
         }
+
+        List<Integer>  res = findUniqueElements(arr);
+        System.out.println(Arrays.toString(res.toArray()));
 
     }
 
