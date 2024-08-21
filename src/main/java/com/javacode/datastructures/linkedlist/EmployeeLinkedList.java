@@ -4,9 +4,22 @@ public class EmployeeLinkedList {
 
 
 
+    public static EmployeeNode reverseLinkedList(EmployeeNode head){
+        EmployeeNode prev=null;
+        EmployeeNode next=null;
+        EmployeeNode current = head;
 
-    public static EmployeeNode deleteNthNode(EmployeeNode head, int n){
+        while (current  != null){
 
+
+            next = current.getNext();
+            current.setNext(prev);
+            prev = current;
+            current=next;
+
+
+        }
+        return prev;
     }
 
     public static EmployeeNode insertLast(EmployeeNode head,Employee newData){
@@ -120,6 +133,9 @@ public class EmployeeLinkedList {
 
         Employee e7 = new Employee("Shada","Gbolade",39,"Engineering");
         insertLast(head,e7);
+        printList(head);
+        System.out.println(" Reverse single linked list");
+        head = reverseLinkedList(head);
         printList(head);
 
     }
